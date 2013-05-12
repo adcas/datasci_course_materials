@@ -1,17 +1,23 @@
 import sys
+from utils import *
 
-def hw():
-    print 'Hello, world!'
+'''
+Usage: python tweet_sentiment.py <sentiment_file> <tweet_file>
 
-def lines(fp):
-    print str(len(fp.readlines()))
+Derive the sentiment of each tweet
+'''
 
 def main():
     sent_file = open(sys.argv[1])
     tweet_file = open(sys.argv[2])
-    hw()
-    lines(sent_file)
-    lines(tweet_file)
+    analyzer = LineSentimentAnalyzer(sent_file)
+    tweets = parse_tweets(tweet_file)
+    lines_sentiment_analysis = analyzer.compute_sentiments(tweets)
+    if DEBUG:
+	    analyzer.print_analysis_complete(lines_sentiment_analysis)    	
+    else:
+	    analyzer.print_analysis_scores(lines_sentiment_analysis)
+
 
 if __name__ == '__main__':
     main()
