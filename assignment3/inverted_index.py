@@ -24,7 +24,7 @@ def mapper(record):
 
 def reducer(key, list_of_documents):
     # key: word
-    # value: list of dicument names
+    # value: list of document names
     mr.emit((key, list_of_documents))
 
 # Do not modify below this line
